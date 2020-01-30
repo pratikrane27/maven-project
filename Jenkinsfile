@@ -55,7 +55,7 @@ pipeline {
 		stage("Deploy to production") {
 			
 			steps {
-				timeout(time: 5, unit: 'HOURS') {
+				timeout(1) {
 					input 'Do you want to deploy an application to production?'
 				}
 				
