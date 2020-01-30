@@ -38,12 +38,6 @@ pipeline {
 			}
 		}
 		
-		stage("Checking code quality") {
-			steps {
-				build 'maven-webapp-checkstyle'
-			}
-		}
-
 		stage("Deploy to production") {
 			steps {
 				timeout(time: 5, unit: 'HOURS') {
