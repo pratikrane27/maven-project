@@ -20,9 +20,7 @@ pipeline {
 				}
 			}
 		}
-		
-	}
-	stage("Deploy to staging and checking code") {
+		stage("Deploy to staging and checking code") {
 		parallel {
 			stage("Deploy to staging") {
 				steps {
@@ -49,12 +47,12 @@ pipeline {
 			}
 		}
 	}
-	stage("Deploy to production") {
-		steps {
-			timeout(time: 1, unit: 'DAYS') {
-				input 'Do you want to deploy application to production'
+			stage("Deploy to production") {
+				steps {
+					timeout(time: 1, unit: 'DAYS') {
+						input 'Do you want to deploy application to production'
 			}
-			deploy adapters: [tomcat8(credentialsId: '19acb682-f71a-4890-b9f9-9b402fe63546', path: '', url: 'http://ec2-18-222-212-66.us-east-2.compute.amazonaws.com:9090/')], contextPath: null, onFailure: false, war: '**/*.war'
+					deploy adapters: [tomcat8(credentialsId: '19acb682-f71a-4890-b9f9-9b402fe63546', path: '', url: 'http://ec2-18-222-212-66.us-east-2.compute.amazonaws.com:9090/')], contextPath: null, onFailure: false, war: '**/*.war'
 		}
 	}
 	post {
@@ -65,4 +63,8 @@ pipeline {
 			echo "failed to deploy app in production"
 		}
 	}
+		
+	}
+	
+	
 }
