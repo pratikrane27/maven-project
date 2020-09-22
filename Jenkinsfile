@@ -59,7 +59,7 @@ pipeline {
 					echo "App is deployed succesfully in production"
 				}
 				failure {
-					echo "failed to deploy app in production"
+					echo "failed to deploy app in production "
 					}
 				}
 		}
